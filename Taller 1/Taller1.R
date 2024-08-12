@@ -19,24 +19,20 @@ p_load(tidyverse, rio,
        xtable #exportar a latex
 ) 
 
-setwd(dir = "C:/Users/silva/OneDrive/Escritorio/2024-II
-      /Economia Urbana/EconomiaUrbana1") # fijamos el directorio
+setwd(dir = "C:/Users/silva/OneDrive/Escritorio/2024-II/Economia Urbana/EconomiaUrbana1") # fijamos el directorio
 
 df <- import("Taller 1/dataTaller1.rds") # llamamos a la base de datos
 
 # ?lm
 
-lconsumo <- log(df$consumo)
-lingreso <- log(df$ingreso)
-
 df <- mutate(.data = df, lconsumo = log(df$consumo))
 df <- mutate(.data = df, lingreso = log(df$ingreso))
 
 regresion1 <- lm(formula = df$lconsumo ~ df$voucher)
-regresion1 %>% summary()
+#regresion1 %>% summary()
 
 regresion2 <- lm(formula = df$lconsumo ~ df$voucher + df$lingreso)
-regresion2 %>% summary()
+#regresion2 %>% summary()
 
 
 stargazer(regresion1, regresion2,
@@ -45,7 +41,7 @@ stargazer(regresion1, regresion2,
           df = FALSE,
           digits = 4, 
           out = paste0("Output/ols.tex"),
-          title = "Tabla 1. Modelos de regresión",
+          title = "Tabla 1. Modelos de regresión sin la variable ingreso (1), y con la variable ingreso (2)",
           style = "default"
           )
 
